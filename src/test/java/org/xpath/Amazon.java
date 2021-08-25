@@ -9,6 +9,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -55,5 +56,11 @@ public class Amazon {
 		element = driver.findElement(By.xpath("//a[text()='FREE delivery:']//following-sibling::b"));
 		String deliveryDate = element.getText();
 		System.out.println("Your expected Free delivery date is " + deliveryDate);
+	}
+	
+	@AfterClass
+	private void closeBrowser() {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.quit();
 	}
 }
